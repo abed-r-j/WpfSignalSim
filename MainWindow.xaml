@@ -1,0 +1,66 @@
+﻿<Window x:Class="WpfSignalSim.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfSignalSim"
+        mc:Ignorable="d"
+        Title="High Frequency Signal Simulator" Height="700" Width="900">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" BorderBrush="LightGray" BorderThickness="0,0,1,0">
+            <StackPanel Margin="5">
+                <TextBlock Text="Toolbox" FontWeight="Bold" Margin="0,0,0,10"/>
+                <Border Background="AliceBlue" BorderBrush="Blue" BorderThickness="1" Padding="10" Margin="5" Cursor="Hand"
+                        Tag="NRZ_Source" MouseMove="ToolboxItem_MouseMove" PreviewMouseLeftButtonDown="ToolboxItem_PreviewMouseLeftButtonDown">
+                    <TextBlock Text="NRZ Source" TextAlignment="Center" IsHitTestVisible="False"/>
+                </Border>
+                <Border Background="LightPink" BorderBrush="Red" BorderThickness="1" Padding="10" Margin="5" Cursor="Hand"
+                        Tag="PAM4_Source" MouseMove="ToolboxItem_MouseMove" PreviewMouseLeftButtonDown="ToolboxItem_PreviewMouseLeftButtonDown">
+                    <TextBlock Text="PAM4 Source" TextAlignment="Center" IsHitTestVisible="False"/>
+                </Border>
+                <Border Background="LightGreen" BorderBrush="Green" BorderThickness="1" Padding="10" Margin="5" Cursor="Hand"
+                         Tag="Add_Jitter" MouseMove="ToolboxItem_MouseMove" PreviewMouseLeftButtonDown="ToolboxItem_PreviewMouseLeftButtonDown">
+                    <TextBlock Text="Add Jitter" TextAlignment="Center" IsHitTestVisible="False"/>
+                </Border>
+                <Border Background="LightYellow" BorderBrush="Orange" BorderThickness="1" Padding="10" Margin="5" Cursor="Hand"
+                         Tag="Add_Noise" MouseMove="ToolboxItem_MouseMove" PreviewMouseLeftButtonDown="ToolboxItem_PreviewMouseLeftButtonDown">
+                    <TextBlock Text="Add Noise" TextAlignment="Center" IsHitTestVisible="False"/>
+                </Border>
+                <Border Background="Lavender" BorderBrush="Purple" BorderThickness="1" Padding="10" Margin="5" Cursor="Hand"
+                         Tag="Channel" MouseMove="ToolboxItem_MouseMove" PreviewMouseLeftButtonDown="ToolboxItem_PreviewMouseLeftButtonDown">
+                    <TextBlock Text="Channel" TextAlignment="Center" IsHitTestVisible="False"/>
+                </Border>
+                <Border Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="1" Padding="10" Margin="5" Cursor="Hand"
+                         Tag="Eye_Diagram" MouseMove="ToolboxItem_MouseMove" PreviewMouseLeftButtonDown="ToolboxItem_PreviewMouseLeftButtonDown">
+                    <TextBlock Text="Eye Diagram" TextAlignment="Center" IsHitTestVisible="False"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Column="1" BorderBrush="LightGray" BorderThickness="0,0,1,0">
+            <Canvas x:Name="SimulationCanvas" Background="WhiteSmoke" AllowDrop="True"
+                    DragEnter="SimulationCanvas_DragEnter"
+                    Drop="SimulationCanvas_Drop"
+                    MouseMove="SimulationCanvas_MouseMove"
+                    MouseLeftButtonUp="SimulationCanvas_MouseLeftButtonUp"
+                    PreviewMouseLeftButtonDown="SimulationCanvas_PreviewMouseLeftButtonDown"
+                    PreviewMouseLeftButtonUp="SimulationCanvas_PreviewMouseLeftButtonUp">
+            </Canvas>
+        </Border>
+
+        <Border Grid.Column="2">
+            <StackPanel Margin="10">
+                <TextBlock Text="Properties" FontWeight="Bold" Margin="0,0,0,10"/>
+                <TextBlock x:Name="PropertiesPlaceholder" Text="Select a block to see its properties." Foreground="Gray"/>
+                <ContentControl x:Name="PropertiesContent"/>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</Window>
